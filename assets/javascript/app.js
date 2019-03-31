@@ -6,7 +6,7 @@ let activities = [],
     API_KEY = 'AxkwSE1_LXTlHlyz7rrKPjqs30_wHghk4L4k5-1w-QALR2_QM7kwVpdbNWmhnt8eFWmN-xFaIdFlaiNKRlaAGzsDHXqGzmRbt_nGrPwXPBmQYSIfq6LbgqFQpKKfXHYx';
 
 const yelp = e => {
-    let URL = `https://api.yelp.com/v3/businesses/search?location=${area}&term&categories=${e}&limit=5`;
+    let URL = `https://api.yelp.com/v3/businesses/search?location=${area}&term=${e}&limit=5`;
     let queryURL = `https://cors-anywhere.herokuapp.com/${URL}`;
     fetch( queryURL, {       
         method: "GET",
@@ -22,7 +22,7 @@ const yelp = e => {
          console.log(data.businesses)
          data.businesses.forEach(business => {
             let dispbusiness = document.createElement('div')
-            dispbusiness.innerHTML = `${business.alias}`
+            dispbusiness.innerHTML = `${business.name}`
             document.querySelector('.container').append(dispbusiness)
          })
      })
