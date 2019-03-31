@@ -4,4 +4,4 @@
     Cocktail: https://www.thecocktaildb.com/api.php
     Yelp: https://www.yelp.com/developers/documentation/v3
     Recipe: https://www.food2fork.com/about/api
-    Movie showing: https://www.themoviedb.org/documentation/api
+    Movie showing: https://api.themoviedb.org/3/movie/550?api_key=5baabe9f326a1ee36bccce2793ea6489
