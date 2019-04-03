@@ -1,0 +1,79 @@
+body {
+    background-image: url(../images/background.png);
+    font-family: 'Abel', sans-serif;
+    color: rgb(88, 88, 88);
+}
+.container {
+    position: relative;
+}
+.title {
+    font-size: 90px;
+    text-align: center;
+    margin: auto;
+    margin-top: 15%;
+    padding-top: 17%;
+    width: 200px;
+    height: 310px;
+    background-color: rgba(158, 158, 158, 0.219);
+}
+.start {
+    display: block;
+    color: #26a69a; 
+    font-size: 25px;
+    text-align: center;
+    margin-top: 3%;
+}
+
+/* Planner Page */
+.title2 {
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    height: 120px;
+    width: 250px;
+    margin: auto;
+    margin-bottom: 15%;
+    margin-top: 3%;
+    padding: 10% 4% 1% 4%;
+    background-color: rgb(49, 49, 49);
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+label {
+    color: rgb(88, 88, 88);
+    font-size: 18px;
+}
+/* input:focus {
+    outline: transparent;
+} */
+.addbtn {
+    background-color: transparent;
+    border: none;
+    float: right;
+    margin-top: -5%;
+    margin-bottom: -2%;
+}
+button:hover {
+    cursor: pointer;
+}
+.addbtn:focus{
+    background-color: transparent;
+}
+.nextlocation {
+    margin-top: 6%;
+}
+.locations {
+    margin-top: -7%;
+}
+.plannedactivities {
+    margin-top: -5%;
+    color: #26a69a;
+}
+.noactivity {
+    margin-top: 3%;
+    color: #26a69a;
+
+}
