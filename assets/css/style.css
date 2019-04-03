@@ -75,5 +75,23 @@ button:hover {
 .noactivity {
     margin-top: 3%;
     color: #26a69a;
-
+}
+/* yelp search */
+.businessimg {
+    width: 120px;
+}
+.businessaddress {
+    margin-bottom: 2%;
+}
+.activitiesbtns {
+    text-align: center;
+    margin-top: -10%;
+}
+.activitybtn {
+    margin: 1%;
+    font-size: 11px;
+    box-shadow: none;
+}
+.addbusiness {
+    float: right;
 }
