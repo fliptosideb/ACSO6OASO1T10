@@ -1,20 +1,13 @@
 let activities = [],
-    destinations = [],
+    i = 0,
+    destinationsInfo = [],
     isActivity = false,
+    isDestination = false,
     date,
     yourlocation,
     area,
     API_KEY = 'AxkwSE1_LXTlHlyz7rrKPjqs30_wHghk4L4k5-1w-QALR2_QM7kwVpdbNWmhnt8eFWmN-xFaIdFlaiNKRlaAGzsDHXqGzmRbt_nGrPwXPBmQYSIfq6LbgqFQpKKfXHYx';
 
-const activitiesbtn = () => {
-    activities.forEach(activity => {
-        let activitybtn = document.createElement('button')
-        activitybtn.className = 'btn waves-effect waves-light activitybtn'
-        activitybtn.innerHTML = activity
-        activitybtn.value = activity
-        document.querySelector('.activitiesbtns').append(activitybtn)
-    })
-}
 const yelp = e => {
     let URL = `https://api.yelp.com/v3/businesses/search?location=${area}&term=${e}&limit=5`;
     let queryURL = `https://cors-anywhere.herokuapp.com/${URL}`;
@@ -32,7 +25,9 @@ const yelp = e => {
          data.businesses.forEach(business => {
             let dispbusiness = document.createElement('div')
             dispbusiness.className = 'dispbusiness'
-            dispbusiness.value = business.coordinates
+            dispbusiness.coor = business.coordinates
+            dispbusiness.name = business.name
+            dispbusiness.address = business.location.display_address
             dispbusiness.innerHTML = `
             <h5>${business.name}</h5>
             <img src='${business.image_url}' class='businessimg'>
@@ -40,12 +35,6 @@ const yelp = e => {
             <p class='businessaddress'>${business.location.display_address}</p>
             `
             document.querySelector('.container').appendChild(dispbusiness)
-
-            // let adddestination = document.createElement('button')
-            // adddestination.className = 'addDestination'
-            // adddestination.innerHTML = 'Add Location'
-            // adddestination.value = dispbusiness.value
-            // document.querySelector('.container').appendChild(adddestination)
          })
      })
      .catch(e => console.error(e))
@@ -75,8 +64,10 @@ document.querySelector('.submit').addEventListener('click', e => {
         date = document.querySelector('#date').value,
         yourlocation = document.querySelector('#yourlocation').value,
         area = document.querySelector('#area').value
-        document.querySelector('.container').innerHTML = ''
-        activitiesbtn()
+        document.querySelector('.container').innerHTML = `
+        <h4 class="subtitle">${activities[i]}</h4>
+        `
+        yelp(activities[i])
     }else {
         let noactivity = document.createElement('p')
         noactivity.className = 'noactivity'
@@ -85,15 +76,42 @@ document.querySelector('.submit').addEventListener('click', e => {
         document.querySelector('.noactivity').append(noactivity) 
     }
 })
-document.addEventListener('click', e => {
-    if (e.target.className === 'btn waves-effect waves-light activitybtn') {
-        document.querySelector('.container').innerHTML = ''
-        yelp(e.target.value)
+
+const nextactivity = () => {
+    if (i !== activities.length){
+        document.querySelector('.container').innerHTML = `
+        <h4 class="subtitle">${activities[i]}</h4>
+        `
+        yelp(activities[i])
     }
-    if (e.target.className === 'dispbusiness' && destinations.indexOf(e.target.value) ===-1){
-        console.log(e.target.value)
-        destinations.push(e.target.value)
-        console.log(destinations)
+    else if (i === activities.length){
+        document.querySelector('.container').innerHTML = `
+        <h4 class='subtitle'>Your Destinations</h4>
+        `
+        destinationsInfo.forEach(destination => {
+            let destinationelem = document.createElement('div')
+            destinationelem.innerHTML = `
+            <h5 class='businesses'>${destination.name}</h5>
+            <h6 class='businesses'>${destination.address}</h6>
+            `
+            document.querySelector('.container').appendChild(destinationelem)
+        })
+        let direction = document.createElement('button')
+        direction.className = 'btn waves-effect waves-light direction'
+        direction.innerHTML = 'Plot Course'
+        document.querySelector('.container').appendChild(direction)
+    }
+}
+
+document.addEventListener('click', e => {
+    if (e.target.className === 'dispbusiness' && destinationsInfo.indexOf(e.target.address) ===-1){
+        destinationsInfo.push({'name': e.target.name, 'address': e.target.address})
         e.target.style.backgroundColor = '#26a69954'
+        i++
+        setTimeout(nextactivity, 1000) 
+    } else if (e.target.className === 'btn waves-effect waves-light direction') {
+        destinationsInfo.forEach(destination => {
+            console.log(destination.address)      
+        })
     }
 })

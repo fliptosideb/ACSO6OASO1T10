@@ -95,3 +95,14 @@ button:hover {
 .addbusiness {
     float: right;
 }
+.subtitle {
+    text-align: center;
+    color: #26a69a
+}
+.businesses {
+    text-align: center;
+}
+.direction {
+    left: 7em;
+    margin-top: 8%;
+}
