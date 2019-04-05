@@ -1,6 +1,7 @@
 let activities = [],
     i = 0,
     destinationsInfo = [],
+    waypoints = []
     isActivity = false,
     isDestination = false,
     date,
@@ -110,23 +111,21 @@ document.addEventListener('click', e => {
         i++
         setTimeout(nextactivity, 1000) 
     } else if (e.target.className === 'btn waves-effect waves-light direction') {
-        // destinationsInfo.forEach(destination => {
-        //     console.log(destination.address)      
-        // })
-        console.log(destinationsInfo)
+        destinationsInfo.forEach(destination => {
+            waypoints.push(`${destination.address[0]} ${destination.address[1]}`)   
+            console.log(waypoints)   
+        })
         document.querySelector('.container').innerHTML = ''
         L.mapquest.key = 'unhtsta6Q2zNmOUxHGw2VK1eiDTwNWvY';
-    
         var map = L.mapquest.map('map', {
-            center: [yourlocation],
+            center: [40.7128, -74.0059],
             layers: L.mapquest.tileLayer('map'),
             zoom: 13
         });
-    
         L.mapquest.directions().route({
             start: yourlocation,
             end: yourlocation,
-            waypoints: [`${destinationsInfo[0].address[0]}, ${destinationsInfo[0].address[1]}`],
+            waypoints: waypoints,
             optimizeWaypoints: true
         });
     }
