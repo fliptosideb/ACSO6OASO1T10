@@ -46,9 +46,6 @@ label {
     color: rgb(88, 88, 88);
     font-size: 18px;
 }
-/* input:focus {
-    outline: transparent;
-} */
 .addbtn {
     background-color: transparent;
     border: none;
@@ -83,10 +80,6 @@ button:hover {
 .businessaddress {
     margin-bottom: 2%;
 }
-.activitiesbtns {
-    text-align: center;
-    margin-top: -10%;
-}
 .activitybtn {
     margin: 1%;
     font-size: 11px;
@@ -97,7 +90,8 @@ button:hover {
 }
 .subtitle {
     text-align: center;
-    color: #26a69a
+    color: #26a69a;
+    margin-top: -12%;
 }
 .businesses {
     text-align: center;
@@ -105,4 +99,8 @@ button:hover {
 .direction {
     left: 7em;
     margin-top: 8%;
+}
+/* map */
+#map {
+    margin-top: -5%;
 }

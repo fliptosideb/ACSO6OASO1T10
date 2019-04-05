@@ -110,8 +110,24 @@ document.addEventListener('click', e => {
         i++
         setTimeout(nextactivity, 1000) 
     } else if (e.target.className === 'btn waves-effect waves-light direction') {
-        destinationsInfo.forEach(destination => {
-            console.log(destination.address)      
-        })
+        // destinationsInfo.forEach(destination => {
+        //     console.log(destination.address)      
+        // })
+        console.log(destinationsInfo)
+        document.querySelector('.container').innerHTML = ''
+        L.mapquest.key = 'unhtsta6Q2zNmOUxHGw2VK1eiDTwNWvY';
+    
+        var map = L.mapquest.map('map', {
+            center: [yourlocation],
+            layers: L.mapquest.tileLayer('map'),
+            zoom: 13
+        });
+    
+        L.mapquest.directions().route({
+            start: yourlocation,
+            end: yourlocation,
+            waypoints: [`${destinationsInfo[0].address[0]}, ${destinationsInfo[0].address[1]}`],
+            optimizeWaypoints: true
+        });
     }
 })
