@@ -4,7 +4,7 @@ let activities = [],
     waypoints = []
     isActivity = false,
     isDestination = false,
-    date,
+    dayname,
     yourlocation,
     area,
     API_KEY = 'AxkwSE1_LXTlHlyz7rrKPjqs30_wHghk4L4k5-1w-QALR2_QM7kwVpdbNWmhnt8eFWmN-xFaIdFlaiNKRlaAGzsDHXqGzmRbt_nGrPwXPBmQYSIfq6LbgqFQpKKfXHYx';
@@ -62,7 +62,7 @@ document.querySelector('.submit').addEventListener('click', e => {
     e.preventDefault()
     document.querySelector('.noactivity').innerHTML = ''
     if (isActivity && activities.length > 0){
-        date = document.querySelector('#date').value,
+        dayname = document.querySelector('#dayname').value,
         yourlocation = document.querySelector('#yourlocation').value,
         area = document.querySelector('#area').value
         document.querySelector('.container').innerHTML = `
