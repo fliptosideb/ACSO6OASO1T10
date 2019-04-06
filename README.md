@@ -11,14 +11,19 @@ Add screenshots
 ## Usage
 
 Bootstrap - UI Design
+<br>
 Yelp API - Search activities, places, and restaurants
+<br>
 Mapquest API - Geolocation and directions
 
 ## Authors and acknowledgment
 
 Annie Pham      https://github.com/anniekpham
+<br>
 Jonathan Lui    https://github.com/fliptosideb
+<br>
 Larry To        https://github.com/LTo28
+<br>
 Amine Haddouch  https://github.com/aminehdhd
 
 
