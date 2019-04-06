@@ -25,7 +25,8 @@ const showPosition = (position) => {
     fetch(`https://www.mapquestapi.com/geocoding/v1/reverse?key=zlMKNlqjyFv79AvMHSCLunzQE5O7u7Ak&location=${position.coords.latitude},${position.coords.longitude}`)
         .then(r => r.json())
         .then(({ results }) => {
-            let curLocation = results[0].locations[0].street + " " + results[0].locations[0].adminArea5 + " " + results[0].locations[0].adminArea3 + " " + results[0].locations[0].postalCode
+            let locations = results[0].locations[0]
+            let curLocation = locations.street +' '+ locations.adminArea5 +' '+ locations.adminArea3 +' '+ locations.postalCode
             yourLocation.value = curLocation
         })
         .catch(e => console.error(e))
