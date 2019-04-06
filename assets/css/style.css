@@ -14,9 +14,6 @@ body {
     padding-top: 14%;
     width: 200px;
     height: 275px;
-    color: rgba(255, 255, 255, 0.924);
-    border: 5px dotted;
-    background-image: url(../images/stardust.png);
     background-color: rgba(158, 158, 158, 0.219);
 }
 .start {
@@ -99,9 +96,12 @@ button:hover {
 .businesses {
     text-align: center;
 }
-.direction {
-    left: 7em;
+.directionOrsave {
+    text-align: center;
     margin-top: 8%;
+}
+.plotcoursebtn {
+    margin-right: 7%;
 }
 /* map */
 #map {
@@ -115,4 +115,8 @@ button:hover {
 }
 .leaflet-bar {
     box-shadow: none;
+}
+.directionbtn {
+    left: 8em;
+    top: -2em;
 }

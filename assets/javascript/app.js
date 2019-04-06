@@ -96,9 +96,12 @@ const nextactivity = () => {
             `
             document.querySelector('.container').appendChild(destinationelem)
         })
-        let direction = document.createElement('button')
-        direction.className = 'btn waves-effect waves-light direction'
-        direction.innerHTML = 'Plot Course'
+        let direction = document.createElement('div')
+        direction.innerHTML = `
+        <button class='btn waves-effect waves-light plotcoursebtn'>Plot Course</button>
+        <button class='btn waves-effect waves-light savebtn'>Save</button>
+        `
+        direction.className = 'directionOrsave'
         document.querySelector('.container').appendChild(direction)
     }
 }
@@ -108,29 +111,28 @@ document.addEventListener('click', e => {
         destinationsInfo.push({'name': e.target.name, 'address': e.target.address})
         e.target.style.backgroundColor = '#26a69954'
         i++
-        setTimeout(nextactivity, 1000) 
-    } else if (e.target.className === 'btn waves-effect waves-light direction') {
+        setTimeout(nextactivity, 500) 
+    } else if (e.target.className === 'btn waves-effect waves-light plotcoursebtn') {
         destinationsInfo.forEach(destination => {
             waypoints.push(`${destination.address[0]} ${destination.address[1]}`)   
         })
-        document.querySelector('.container').innerHTML = `
-        <div id="map" style="width: 100%; height: 530px;"></div>
-        `
+        document.querySelector('.container').innerHTML ='<div id="map" style="width: 100%; height: 530px;"></div>'
+        
         L.mapquest.key = 'unhtsta6Q2zNmOUxHGw2VK1eiDTwNWvY';
         const render = (err, response) => {
             let map = L.mapquest.map('map', {
-                    center: [0, 0],
-                    layers: L.mapquest.tileLayer('map'),
-                    zoom: 7
-                }),
-                directionsLayer = L.mapquest.directionsLayer({
-                    directionsResponse: response
-                }).addTo(map),
-                narrativeControl = L.mapquest.narrativeControl({
-                    directionsResponse: response,
-                    compactResults: false,
-                    interactive: true
-                })
+                center: [0, 0],
+                layers: L.mapquest.tileLayer('map'),
+                zoom: 7
+            })
+            directionsLayer = L.mapquest.directionsLayer({
+                directionsResponse: response
+            }).addTo(map)
+            narrativeControl = L.mapquest.narrativeControl({
+                directionsResponse: response,
+                compactResults: false,
+                interactive: true
+            })
             narrativeControl.setDirectionsLayer(directionsLayer);
             narrativeControl.addTo(map)
         }
