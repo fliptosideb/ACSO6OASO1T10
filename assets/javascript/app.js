@@ -145,5 +145,8 @@ document.addEventListener('click', e => {
                 enhancedNarrative: true
             }
         }, render)
+    } else if (e.target.className === 'btn waves-effect waves-light location') {
+        e.preventDefault()
+        console.log('yay')
     }
 })
