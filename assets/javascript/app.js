@@ -69,7 +69,7 @@ document.querySelector('.submit').addEventListener('click', e => {
         <h4 class="subtitle">${activities[i]}</h4>
         `
         yelp(activities[i])
-    }else {
+    } else {
         let noactivity = document.createElement('p')
         noactivity.className = 'noactivity'
         noactivity.innerHTML = `Please add an activity`
@@ -84,8 +84,7 @@ const nextactivity = () => {
         <h4 class="subtitle">${activities[i]}</h4>
         `
         yelp(activities[i])
-    }
-    else if (i === activities.length){
+    } else if (i === activities.length){
         document.querySelector('.container').innerHTML = `
         <h4 class='subtitle'>Your Destinations</h4>
         `
@@ -113,20 +112,36 @@ document.addEventListener('click', e => {
     } else if (e.target.className === 'btn waves-effect waves-light direction') {
         destinationsInfo.forEach(destination => {
             waypoints.push(`${destination.address[0]} ${destination.address[1]}`)   
-            console.log(waypoints)   
         })
-        document.querySelector('.container').innerHTML = ''
+        document.querySelector('.container').innerHTML = `
+        <div id="map" style="width: 100%; height: 530px;"></div>
+        `
         L.mapquest.key = 'unhtsta6Q2zNmOUxHGw2VK1eiDTwNWvY';
-        var map = L.mapquest.map('map', {
-            center: [40.7128, -74.0059],
-            layers: L.mapquest.tileLayer('map'),
-            zoom: 13
-        });
+        const render = (err, response) => {
+            let map = L.mapquest.map('map', {
+                    center: [0, 0],
+                    layers: L.mapquest.tileLayer('map'),
+                    zoom: 7
+                }),
+                directionsLayer = L.mapquest.directionsLayer({
+                    directionsResponse: response
+                }).addTo(map),
+                narrativeControl = L.mapquest.narrativeControl({
+                    directionsResponse: response,
+                    compactResults: false,
+                    interactive: true
+                })
+            narrativeControl.setDirectionsLayer(directionsLayer);
+            narrativeControl.addTo(map)
+        }
         L.mapquest.directions().route({
             start: yourlocation,
             end: yourlocation,
             waypoints: waypoints,
-            optimizeWaypoints: true
-        });
+            optimizeWaypoints: true,
+            options: {
+                enhancedNarrative: true
+            }
+        }, render)
     }
 })

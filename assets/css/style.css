@@ -29,13 +29,13 @@ body {
     font-size: 50px;
     text-align: center;
     color: white;
+    background-image: url(../images/stardust.png);
     height: 120px;
     width: 250px;
     margin: auto;
     margin-bottom: 15%;
     margin-top: 3%;
     padding: 10% 4% 1% 4%;
-    background-color: rgb(49, 49, 49);
     border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
@@ -103,4 +103,13 @@ button:hover {
 /* map */
 #map {
     margin-top: -5%;
+    border: 2px solid #26a69a;
+}
+.leaflet-control {
+    width: 290px;
+    height: 150px;
+    margin-bottom: none;
+}
+.leaflet-bar {
+    box-shadow: none;
 }
