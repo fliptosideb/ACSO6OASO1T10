@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Planner</title>
 </head>
+
 <body>
     <header class="title2">• Day Out •</header>
     <div class="container">
@@ -28,6 +30,8 @@
                         <div class="col s12">
                             <label for="yourlocation">Your Location</label>
                             <input type="text" id="yourlocation">
+                            <button class="btn waves-effect waves-light submit" type="submit" id="submit" name="action"
+                                onclick=getLocation()><i class="small material-icons">location_on</i></button>
                         </div>
                     </div>
                     <div class="row">
@@ -48,10 +52,11 @@
                         </div>
                     </div>
                     <div class="row">
-                            <div class="col s12 plannedactivities"></div>
+                        <div class="col s12 plannedactivities"></div>
                     </div>
                     <div class="row">
-                        <button class="btn waves-effect waves-light submit" type="submit" id="submit" name="action">Start Planning</button>
+                        <button class="btn waves-effect waves-light submit" type="submit" id="submit"
+                            name="action">Start Planning</button>
                     </div>
                     <div class="row noactivity">
                     </div>
@@ -63,4 +68,5 @@
     <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
     <script src="./assets/javascript/app.js"></script>
 </body>
+
 </html>
