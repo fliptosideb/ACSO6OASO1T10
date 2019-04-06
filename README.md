@@ -2,7 +2,7 @@
 
 Project #1 at UCI's Coding Boot Camp.
 
-The day out applications is an all-in-one place to search and plan out your day whether you are going on a date or just like to be organized.
+The day out application is an all-in-one place to search and plan out your day whether you are going on a date or just like to be organized.
 
 ## Visuals
 
