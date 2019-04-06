@@ -1,4 +1,2 @@
-# ACSO6OASO1T10
-# hotdog
-# jellyfish
-# test
+# Geolocation and reverse geocoding
+Purpose: Gets your current location (if allowed)
