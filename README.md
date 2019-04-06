@@ -1,11 +1,25 @@
+# Day Out App
 
-# Geolocation and reverse geocoding
-Purpose: Gets your current location (if allowed)
+Project #1 at UCI's Coding Boot Camp.
 
-# ACSO6OASO1T10
-# Working API
-    Google Map: https://developers.google.com/maps/documentation/
-    Cocktail: https://www.thecocktaildb.com/api.php
-    Yelp: https://www.yelp.com/developers/documentation/v3
-    Recipe: https://www.food2fork.com/about/api
-    Movie showing: https://api.themoviedb.org/3/movie/550?api_key=5baabe9f326a1ee36bccce2793ea6489
+The day out applications is an all-in-one place to search and plan out your day whether you are going on a date or just like to be organized.
+
+## Visuals
+
+Add screenshots
+
+## Usage
+
+Bootstrap - UI Design
+Yelp API - Search activities, places, and restaurants
+Mapquest API - Geolocation and directions
+
+## Authors and acknowledgment
+
+Annie Pham      https://github.com/anniekpham
+Jonathan Lui    https://github.com/fliptosideb
+Larry To        https://github.com/LTo28
+Amine Haddouch  https://github.com/aminehdhd
+
+
+## License
