@@ -22,7 +22,7 @@ const showPosition = (position) => {
     yourLocation = document.querySelector('#yourlocation')
 
     //reverse geocode
-    fetch(`http://www.mapquestapi.com/geocoding/v1/reverse?key=zlMKNlqjyFv79AvMHSCLunzQE5O7u7Ak&location=${position.coords.latitude},${position.coords.longitude}`)
+    fetch(`https://www.mapquestapi.com/geocoding/v1/reverse?key=zlMKNlqjyFv79AvMHSCLunzQE5O7u7Ak&location=${position.coords.latitude},${position.coords.longitude}`)
         .then(r => r.json())
         .then(({ results }) => {
             let curLocation = results[0].locations[0].street + " " + results[0].locations[0].adminArea5 + " " + results[0].locations[0].adminArea3 + " " + results[0].locations[0].postalCode
