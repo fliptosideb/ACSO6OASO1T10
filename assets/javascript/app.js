@@ -80,8 +80,8 @@ const activitybtns = () => {
 
 document.querySelector('#add').addEventListener('click', e => {
     e.preventDefault()
-    document.querySelector('.plannedactivities').innerHTML = ''
     if (document.querySelector('.newlocation').value) {
+        document.querySelector('.plannedactivities').innerHTML = ''
         activities.push(document.querySelector('.newlocation').value)
         isActivity = true
         document.querySelector('.newlocation').value = ''
@@ -181,9 +181,10 @@ document.addEventListener('click', e => {
     } else if (e.target.className === 'btn waves-effect waves-light activities') {
         e.preventDefault()
         document.querySelector('.plannedactivities').innerHTML = ''
-        console.log(e.target.value)
-        activities.splice(e.target,1)
-        console.log(activities)
+        let j = activities.indexOf(e.target.value)
+        if (j !==-1){
+            activities.splice(j,1)
+        }
         activitybtns()
     }
 })
