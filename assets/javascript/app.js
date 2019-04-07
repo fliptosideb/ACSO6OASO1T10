@@ -2,12 +2,12 @@ let activities = [],
     i = 0,
     destinationsInfo = [],
     waypoints = []
-isActivity = false,
+    isActivity = false,
     isDestination = false,
     dayname,
     yourlocation,
     area,
-    API_KEY = 'AxkwSE1_LXTlHlyz7rrKPjqs30_wHghk4L4k5-1w-QALR2_QM7kwVpdbNWmhnt8eFWmN-xFaIdFlaiNKRlaAGzsDHXqGzmRbt_nGrPwXPBmQYSIfq6LbgqFQpKKfXHYx';
+    API_KEY = 'AxkwSE1_LXTlHlyz7rrKPjqs30_wHghk4L4k5-1w-QALR2_QM7kwVpdbNWmhnt8eFWmN-xFaIdFlaiNKRlaAGzsDHXqGzmRbt_nGrPwXPBmQYSIfq6LbgqFQpKKfXHYx'
 
 //geolocation
 const getLocation = () => {
@@ -65,6 +65,18 @@ const yelp = e => {
         })
         .catch(e => console.error(e))
 }
+const activitybtns = () => {
+    activities.forEach(activity => {
+        let activityelem = document.createElement('span')
+        // activityelem.className = 'btn waves-effect waves-light activities'
+        activityelem.innerHTML = `
+        <button class='btn waves-effect waves-light activities' value='${activity}'>X  ${activity}</button>
+        `
+        activityelem.value = activity
+
+        document.querySelector('.plannedactivities').append(activityelem)
+    })
+}
 
 document.querySelector('#add').addEventListener('click', e => {
     e.preventDefault()
@@ -73,13 +85,7 @@ document.querySelector('#add').addEventListener('click', e => {
         activities.push(document.querySelector('.newlocation').value)
         isActivity = true
         document.querySelector('.newlocation').value = ''
-        activities.forEach(activity => {
-            let activityelem = document.createElement('span')
-            activityelem.className = 'activities'
-            activityelem.innerHTML = ` ${activity},`
-
-            document.querySelector('.plannedactivities').append(activityelem)
-        })
+        activitybtns()
     }
 })
 
@@ -172,5 +178,12 @@ document.addEventListener('click', e => {
         }, render)
     } else if (e.target.className === 'btn waves-effect waves-light location') {
         e.preventDefault()
+    } else if (e.target.className === 'btn waves-effect waves-light activities') {
+        e.preventDefault()
+        document.querySelector('.plannedactivities').innerHTML = ''
+        console.log(e.target.value)
+        activities.splice(e.target,1)
+        console.log(activities)
+        activitybtns()
     }
 })
