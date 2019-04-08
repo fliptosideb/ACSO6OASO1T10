@@ -14,7 +14,7 @@ body {
     padding-top: 14%;
     width: 200px;
     height: 275px;
-    background-color: rgba(158, 158, 158, 0.219);
+    background-color: rgba(158, 158, 158, 0.548);
 }
 .start {
     display: block;
@@ -28,19 +28,20 @@ body {
 .title2 {
     font-size: 50px;
     text-align: center;
-    color: white;
-    background-image: url(../images/stardust.png);
+    color: rgb(88, 88, 88);
+    background-color: rgba(158, 158, 158, 0.219);
+    /* background-image: url(../images/stardust.png); */
     height: 120px;
     width: 250px;
     margin: auto;
     margin-bottom: 15%;
-    margin-top: 3%;
-    padding: 10% 4% 1% 4%;
-    border-radius: 100%;
+    /* margin-top: 3%; */
+    padding: 10% 4%;
+    /* border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
-    -o-border-radius: 100%;
+    -o-border-radius: 100%; */
 }
 label {
     color: rgb(88, 88, 88);
@@ -49,9 +50,12 @@ label {
 .addbtn {
     background-color: transparent;
     border: none;
-    float: right;
-    margin-top: -5%;
-    margin-bottom: -2%;
+    width: 7%;
+    color: #26a69a;
+    box-shadow: none;
+    margin-top: .5%;
+    padding: 0;
+    border-bottom: 1px solid gray;
 }
 button:hover {
     cursor: pointer;
@@ -73,6 +77,29 @@ button:hover {
     margin-top: 3%;
     color: #26a69a;
 }
+#yourlocation {
+    width: 93%;
+}
+#location {
+    background-color: transparent;
+    color: #26a69a;
+    box-shadow: none;
+    width: 7%;
+    padding: 0;
+    border-bottom: 1px solid gray;
+    margin-top: .5%;
+}
+#startlocation {
+    width: 93%;
+}
+.activityinput {
+    display: block;
+}
+.rmvactivities {
+    background-color: transparent;
+    color: #26a69a;
+    box-shadow: none;
+}
 /* yelp search */
 .businessimg {
     width: 120px;
@@ -84,9 +111,6 @@ button:hover {
     margin: 1%;
     font-size: 11px;
     box-shadow: none;
-}
-.addbusiness {
-    float: right;
 }
 .subtitle {
     text-align: center;

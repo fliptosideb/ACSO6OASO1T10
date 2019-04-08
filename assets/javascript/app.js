@@ -70,7 +70,7 @@ const activitybtns = () => {
         let activityelem = document.createElement('span')
         // activityelem.className = 'btn waves-effect waves-light activities'
         activityelem.innerHTML = `
-        <button class='btn waves-effect waves-light activities' value='${activity}'>X  ${activity}</button>
+        <button class='btn waves-effect waves-light rmvactivities' value='${activity}'><i class="material-icons">remove_circle</i> ${activity}</button>
         `
         activityelem.value = activity
 
@@ -178,7 +178,7 @@ document.addEventListener('click', e => {
         }, render)
     } else if (e.target.className === 'btn waves-effect waves-light location') {
         e.preventDefault()
-    } else if (e.target.className === 'btn waves-effect waves-light activities') {
+    } else if (e.target.className === 'btn waves-effect waves-light rmvactivities') {
         e.preventDefault()
         document.querySelector('.plannedactivities').innerHTML = ''
         let j = activities.indexOf(e.target.value)
