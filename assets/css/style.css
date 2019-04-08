@@ -12,8 +12,8 @@ body {
     margin: auto;
     margin-top: 15%;
     padding-top: 14%;
-    width: 200px;
-    height: 275px;
+    width: 650px;
+    height: 75px;
     background-color: rgba(158, 158, 158, 0.548);
 }
 .start {
@@ -31,12 +31,14 @@ body {
     color: rgb(88, 88, 88);
     background-color: rgba(158, 158, 158, 0.219);
     /* background-image: url(../images/stardust.png); */
-    height: 120px;
+    height: 300px;
     width: 250px;
     margin: auto;
-    margin-bottom: 15%;
+    margin-top: 1%;
+    margin-bottom: 3%;
     /* margin-top: 3%; */
-    padding: 10% 4%;
+    padding: 1.5% 0;
+    font-size: 110px;
     /* border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
@@ -45,23 +47,14 @@ body {
 }
 label {
     color: rgb(88, 88, 88);
-    font-size: 18px;
-}
-.addbtn {
-    background-color: transparent;
-    border: none;
-    width: 7%;
-    color: #26a69a;
-    box-shadow: none;
-    margin-top: .5%;
-    padding: 0;
-    border-bottom: 1px solid gray;
+    font-size: 40px;
 }
 button:hover {
     cursor: pointer;
 }
 .addbtn:focus{
     background-color: transparent;
+    box-shadow: none;
 }
 .nextlocation {
     margin-top: 6%;
@@ -70,27 +63,26 @@ button:hover {
     margin-top: -7%;
 }
 .plannedactivities {
-    margin-top: -5%;
     color: #26a69a;
+    margin-bottom: 1%;
 }
 .noactivity {
     margin-top: 3%;
     color: #26a69a;
 }
-#yourlocation {
+#yourlocation, #startlocation, #dayname, #area {
     width: 93%;
+    margin-top: 2.5%;
+    font-size: 20px;
 }
-#location {
+#location, .addbtn {
     background-color: transparent;
     color: #26a69a;
     box-shadow: none;
     width: 7%;
     padding: 0;
-    border-bottom: 1px solid gray;
     margin-top: .5%;
-}
-#startlocation {
-    width: 93%;
+    margin-bottom: 3%;
 }
 .activityinput {
     display: block;
@@ -100,9 +92,21 @@ button:hover {
     color: #26a69a;
     box-shadow: none;
 }
+input[type=text] {
+    margin-top: 3%;
+}
+.addbtn:hover {
+    background-color: transparent;
+    box-shadow: none;
+}
 /* yelp search */
+.dispbusiness {
+    text-align: center;
+    margin: auto;
+    height: 450px;
+}
 .businessimg {
-    width: 120px;
+    width: 160px;
 }
 .businessaddress {
     margin-bottom: 2%;
@@ -115,21 +119,27 @@ button:hover {
 .subtitle {
     text-align: center;
     color: #26a69a;
-    margin-top: -12%;
+    margin-top: -2%;
+    margin-bottom: 2%;
+    font-size: 50px;
 }
 .businesses {
     text-align: center;
+    margin-top:2%;
 }
 .directionOrsave {
     text-align: center;
-    margin-top: 8%;
+    margin-top: 4%;
 }
-.plotcoursebtn {
-    margin-right: 7%;
+.dispbusiness:hover, .rmvactivities:hover {
+    background-color: #26a69952;
 }
+/* p {
+    font-size: 20px;
+} */
 /* map */
 #map {
-    margin-top: -5%;
+    /* margin-top: %; */
     border: 2px solid #26a69a;
 }
 .leaflet-control {
@@ -143,4 +153,30 @@ button:hover {
 .directionbtn {
     left: 8em;
     top: -2em;
+}
+.mapquest-logo {
+    visibility: hidden;
+}
+
+@media only screen and (max-width: 1028px) {
+    .title2 {
+        width: 250px;
+        padding: 5%;
+        float: left;
+        margin-top: 0;
+        font-size: 100px;
+        height: 290px;
+    }
+    label {
+        font-size: 38px;
+    }
+    .container2 {
+        padding-top: 45%;
+    }
+    .subtitle {
+        margin-top: 0;
+    }
+    form {
+        padding-top: 3%;
+    }
 }

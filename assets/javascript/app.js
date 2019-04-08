@@ -35,7 +35,7 @@ document.querySelector('#location').addEventListener('click', e => {
     getLocation()
 })
 const yelp = e => {
-    let URL = `https://api.yelp.com/v3/businesses/search?location=${area}&term=${e}&limit=5`;
+    let URL = `https://api.yelp.com/v3/businesses/search?location=${area}&term=${e}&limit=6`;
     let queryURL = `https://cors-anywhere.herokuapp.com/${URL}`;
     fetch(queryURL, {
         method: "GET",
@@ -50,17 +50,17 @@ const yelp = e => {
         .then(data => {
             data.businesses.forEach(business => {
                 let dispbusiness = document.createElement('div')
-                dispbusiness.className = 'dispbusiness'
+                dispbusiness.className = 'col s4 dispbusiness'
                 dispbusiness.coor = business.coordinates
                 dispbusiness.name = business.name
                 dispbusiness.address = business.location.display_address
                 dispbusiness.innerHTML = `
-            <h5>${business.name}</h5>
+            <h4>${business.name}</h4>
             <img src='${business.image_url}' class='businessimg'>
-            <div>Rating: ${business.rating} Price: ${business.price}</div>
-            <p class='businessaddress'>${business.location.display_address}</p>
+            <h5>Rating: ${business.rating} Price: ${business.price}</h5>
+            <h5 class='businessaddress'>${business.location.display_address}</h5>
             `
-                document.querySelector('.container').appendChild(dispbusiness)
+                document.querySelector('.container2').appendChild(dispbusiness)
             })
         })
         .catch(e => console.error(e))
@@ -94,9 +94,9 @@ document.querySelector('.submit').addEventListener('click', e => {
     document.querySelector('.noactivity').innerHTML = ''
     if (isActivity && activities.length > 0) {
         dayname = document.querySelector('#dayname').value,
-            yourlocation = document.querySelector('#yourlocation').value,
-            area = document.querySelector('#area').value
-        document.querySelector('.container').innerHTML = `
+        yourlocation = document.querySelector('#yourlocation').value,
+        area = document.querySelector('#area').value
+        document.querySelector('.container2').innerHTML = `
         <h4 class="subtitle">${activities[i]}</h4>
         `
         yelp(activities[i])
@@ -111,21 +111,21 @@ document.querySelector('.submit').addEventListener('click', e => {
 
 const nextactivity = () => {
     if (i !== activities.length) {
-        document.querySelector('.container').innerHTML = `
+        document.querySelector('.container2').innerHTML = `
         <h4 class="subtitle">${activities[i]}</h4>
         `
         yelp(activities[i])
     } else if (i === activities.length) {
-        document.querySelector('.container').innerHTML = `
+        document.querySelector('.container2').innerHTML = `
         <h4 class='subtitle'>Your Destinations</h4>
         `
         destinationsInfo.forEach(destination => {
             let destinationelem = document.createElement('div')
             destinationelem.innerHTML = `
-            <h5 class='businesses'>${destination.name}</h5>
-            <h6 class='businesses'>${destination.address}</h6>
+            <h4 class='businesses'>${destination.name}</h4>
+            <h5 class='businesses'>${destination.address}</h5>
             `
-            document.querySelector('.container').appendChild(destinationelem)
+            document.querySelector('.container2').appendChild(destinationelem)
         })
         let direction = document.createElement('div')
         direction.innerHTML = `
@@ -133,21 +133,21 @@ const nextactivity = () => {
         `
         // <button class='btn waves-effect waves-light savebtn'>Save</button>
         direction.className = 'directionOrsave'
-        document.querySelector('.container').appendChild(direction)
+        document.querySelector('.container2').appendChild(direction)
     }
 }
 
 document.addEventListener('click', e => {
-    if (e.target.className === 'dispbusiness' && destinationsInfo.indexOf(e.target.address) === -1) {
+    if (e.target.className === 'col s4 dispbusiness' && destinationsInfo.indexOf(e.target.address) === -1) {
         destinationsInfo.push({ 'name': e.target.name, 'address': e.target.address })
-        e.target.style.backgroundColor = '#26a69954'
+        // e.target.style.backgroundColor = '#26a69954'
         i++
         setTimeout(nextactivity, 500)
     } else if (e.target.className === 'btn waves-effect waves-light plotcoursebtn') {
         destinationsInfo.forEach(destination => {
             waypoints.push(`${destination.address[0]} ${destination.address[1]}`)
         })
-        document.querySelector('.container').innerHTML = '<div id="map" style="width: 100%; height: 530px;"></div>'
+        document.querySelector('.container2').innerHTML = '<div id="map" style="width: 100%; height: 530px;"></div>'
 
         L.mapquest.key = 'unhtsta6Q2zNmOUxHGw2VK1eiDTwNWvY';
         const render = (err, response) => {
