@@ -28,22 +28,15 @@ body {
 .title2 {
     font-size: 50px;
     text-align: center;
-    color: rgb(88, 88, 88);
-    background-color: rgba(158, 158, 158, 0.219);
-    /* background-image: url(../images/stardust.png); */
+    color: white;
+    background-color: #26a69986;
     height: 300px;
     width: 250px;
     margin: auto;
     margin-top: 1%;
     margin-bottom: 3%;
-    /* margin-top: 3%; */
     padding: 1.5% 0;
     font-size: 110px;
-    /* border-radius: 100%;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    -ms-border-radius: 100%;
-    -o-border-radius: 100%; */
 }
 label {
     color: rgb(88, 88, 88);
@@ -99,14 +92,16 @@ input[type=text] {
     background-color: transparent;
     box-shadow: none;
 }
+
 /* yelp search */
 .dispbusiness {
     text-align: center;
     margin: auto;
-    height: 450px;
+    height: 390px;
 }
 .businessimg {
     width: 160px;
+    height: 160px;
 }
 .businessaddress {
     margin-bottom: 2%;
@@ -125,7 +120,7 @@ input[type=text] {
 }
 .businesses {
     text-align: center;
-    margin-top:2%;
+    margin-top: 4%;
 }
 .directionOrsave {
     text-align: center;
@@ -134,12 +129,9 @@ input[type=text] {
 .dispbusiness:hover, .rmvactivities:hover {
     background-color: #26a69952;
 }
-/* p {
-    font-size: 20px;
-} */
+
 /* map */
 #map {
-    /* margin-top: %; */
     border: 2px solid #26a69a;
 }
 .leaflet-control {
@@ -158,25 +150,139 @@ input[type=text] {
     visibility: hidden;
 }
 
-@media only screen and (max-width: 1028px) {
+@media only screen and (max-width: 1480px) {
     .title2 {
-        width: 250px;
-        padding: 5%;
-        float: left;
-        margin-top: 0;
-        font-size: 100px;
-        height: 290px;
+        font-size: 70px;
+        padding: 2%;
+        height: 200px;
+        width: 210px;
     }
     label {
-        font-size: 38px;
+        font-size: 32px;
     }
-    .container2 {
-        padding-top: 45%;
+    #yourlocation, #startlocation, #dayname, #area {
+        margin-top: .5%;
+        font-size: 18px;
+    }
+    .subtitle {
+        font-size: 40px;
+    }
+    .businessimg {
+        width: 130px;
+        height: 130px;
+    }
+    h4 {
+        font-size: 30px;
+    }
+    h5 {
+        font-size: 20px;
+    }
+    .dispbusiness {
+        height: 365px;
+    }
+}
+
+/* media query */
+@media only screen and (max-width: 1024px) {
+    .title2 {
+        width: 200px;
+        padding: 4%;
+        float: left;
+        margin-top: 0;
+        height: 250px;
+        font-size: 85px;
+    }
+    label {
+        font-size: 29px;
     }
     .subtitle {
         margin-top: 0;
     }
     form {
-        padding-top: 3%;
+        padding-top: 6%;
+    }
+    .container2 {
+        padding-top: 40%; 
+    }
+    #yourlocation, #startlocation, #dayname, #area {
+        margin-top: 0;
+        font-size: 17px;
+    }
+    .dispbusiness {
+        height: 360px;
+    }
+}
+@media only screen and (max-width: 991px) {
+    .title2 {
+        font-size: 80px;
+        height: 225px;
+        width: 190px;
+    }
+    .container2 {
+        padding-top: 34%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .title2 {
+        font-size: 75px;
+        height: 215px;
+        width: 185px;
+    }
+    .container2 {
+        padding-top: 39%;
+    }
+}
+@media only screen and (max-width: 640px) {
+    .title2 {
+        font-size: 68px;
+        height: 190px;
+        width: 160px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .title2 {
+        float: none;
+        height: 90px;
+        width: 250px;
+        margin-top: 1%;
+        padding: 3.5%;
+        font-size: 55px;
+    }
+    .container2 {
+        padding-top: 2%;
+    }
+    .dispbusiness {
+        height: 290px;
+        text-align: left;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    label {
+        font-size: 20px;
+    }
+    .rmvactivities {
+        font-size: 13px;
+    }
+    .subtitle {
+        font-size: 37px;
+        margin-bottom: 0;
+    }
+    .businessimg {
+        width: 120px;
+        height: 120px;
+    }
+    h4 {
+        font-size: 23px;
+    }
+    h5 {
+        font-size: 16px;
+    }
+    .dispbusiness {
+        height: 253px;
+    }
+    #yourlocation, #startlocation, #dayname, #area {
+        font-size: 15px;
     }
 }
