@@ -109,10 +109,10 @@ const yelp = e => {
                 dispbusiness.className = 'col s12 m4'
                 dispbusiness.innerHTML = `
             <h4>${business.name}</h4>
+            <button class="dispbusiness" name="${business.name}" value="${business.location.display_address}"><i class="material-icons">add</i></button>
             <img src='${business.image_url}' class='businessimg'>
             <h5>Rating: ${business.rating} Price: ${business.price}</h5>
             <h5 class='businessaddress'>${business.location.display_address}</h5>
-            <button class="dispbusiness" name="${business.name}" value="${business.location.display_address}"><i class="material-icons">add</i></button>
             `
                 document.querySelector('.container2').appendChild(dispbusiness)
             })
