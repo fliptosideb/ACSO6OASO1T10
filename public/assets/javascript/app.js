@@ -106,9 +106,6 @@ const yelp = e => {
             data.businesses.forEach(business => {
                 let dispbusiness = document.createElement('div')
                 dispbusiness.className = 'col s12 m4'
-                // dispbusiness.coor = business.coordinates
-                // dispbusiness.name = business.name
-                // dispbusiness.address = business.location.display_address
                 dispbusiness.innerHTML = `
             <h4>${business.name}</h4>
             <img src='${business.image_url}' class='businessimg'>
@@ -227,18 +224,14 @@ const direction = () => {
 
 document.addEventListener('click', e => {
     if (e.target.className === 'dispbusiness') {
-        console.log(e.target.value)
         destinationsInfo.push({ 'name': e.target.name, 'address': e.target.value })
         i++
         setTimeout(nextactivity, 500)
     } else if (e.target.classList.contains('plotcoursebtn')) {
-        console.log(destinationsInfo)
         destinationsInfo.forEach(destination => {
             waypoints.push(`${destination.address}`)
         })
         direction()
-    // } else if (e.target.className === 'btn waves-effect waves-light location') {
-    //     e.preventDefault()
     } else if (e.target.classList.contains('rmvactivities') || e.target.className === 'material-icons remove') {
         e.preventDefault()
         document.querySelector('.plannedactivities').innerHTML = ''
@@ -277,7 +270,6 @@ document.addEventListener('click', e => {
         `
     } else if (e.target.classList.contains('addpickup')) {
         destinationsInfo.unshift({ 'name': document.querySelector('.name').value, 'address': [`${document.querySelector('.address0').value}`, `${document.querySelector('.address1').value}`]})
-        console.log(destinationsInfo)
         dispdestination()
     }
 })

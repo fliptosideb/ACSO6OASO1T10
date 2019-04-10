@@ -181,6 +181,9 @@ input[type=text] {
         height: 365px;
     }
 }
+html {
+    overflow-y: scroll;
+}
 
 /* media query */
 @media only screen and (max-width: 1024px) {
