@@ -9,12 +9,34 @@ let activities = [],
     isOptimize = false,
     API_KEY = 'AxkwSE1_LXTlHlyz7rrKPjqs30_wHghk4L4k5-1w-QALR2_QM7kwVpdbNWmhnt8eFWmN-xFaIdFlaiNKRlaAGzsDHXqGzmRbt_nGrPwXPBmQYSIfq6LbgqFQpKKfXHYx'
 
+// // FirebaseUI config.
+// var uiConfig = {
+//     signInSuccessUrl: 'planner.html',
+//     signInOptions: [
+//       // Leave the lines as is for the providers you want to offer your users.
+//       firebase.auth.GoogleAuthProvider.PROVIDER_ID
+//     ],
+//     // tosUrl and privacyPolicyUrl accept either url string or a callback
+//     // function.
+//     // Terms of service url/callback.
+//     tosUrl: 'https://www.google.com/',
+//     // Privacy policy url/callback.
+//     privacyPolicyUrl: function() {
+//       window.location.assign('https://www.google.com/');
+//     }
+//   };
+
+//   // Initialize the FirebaseUI Widget using Firebase.
+//   var ui = new firebaseui.auth.AuthUI(firebase.auth());
+//   // The start method will wait until the DOM is loaded.
+//   ui.start('#login', uiConfig);
+
 //geolocation
 const getLocation = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-        yourLocation.innerHTML = "Geolocation is not supported by this browser.";
+        yourLocation.value = "Geolocation is not supported by this browser.";
     }
 }
 
@@ -83,15 +105,16 @@ const yelp = e => {
         .then(data => {
             data.businesses.forEach(business => {
                 let dispbusiness = document.createElement('div')
-                dispbusiness.className = 'col s12 m4 dispbusiness'
-                dispbusiness.coor = business.coordinates
-                dispbusiness.name = business.name
-                dispbusiness.address = business.location.display_address
+                dispbusiness.className = 'col s12 m4'
+                // dispbusiness.coor = business.coordinates
+                // dispbusiness.name = business.name
+                // dispbusiness.address = business.location.display_address
                 dispbusiness.innerHTML = `
             <h4>${business.name}</h4>
             <img src='${business.image_url}' class='businessimg'>
             <h5>Rating: ${business.rating} Price: ${business.price}</h5>
             <h5 class='businessaddress'>${business.location.display_address}</h5>
+            <button class="dispbusiness" name="${business.name}" value="${business.location.display_address}"><i class="material-icons">add</i></button>
             `
                 document.querySelector('.container2').appendChild(dispbusiness)
             })
@@ -104,7 +127,7 @@ const activitybtns = () => {
     activities.forEach(activity => {
         let activityelem = document.createElement('span')
         activityelem.innerHTML = `
-        <button class='btn waves-effect waves-light rmvactivities' value='${activity}'><i class="material-icons">remove_circle</i> ${activity}</button>
+        <button class='btn waves-effect waves-light rmvactivities' value='${activity}'><i class="material-icons remove">remove_circle</i> ${activity}</button>
         `
         activityelem.value = activity
 
@@ -124,7 +147,7 @@ document.querySelector('#add').addEventListener('click', e => {
     }
 })
 
-// if input has value display yelp search else display add activity
+// if input has value display yelp search, else display add activity
 document.querySelector('.submit').addEventListener('click', e => {
     e.preventDefault()
     document.querySelector('.noactivity').innerHTML = ''
@@ -145,7 +168,31 @@ document.querySelector('.submit').addEventListener('click', e => {
     }
 })
 
-// display yelp api for next activity on location click
+const dispdestination = () => {
+    document.querySelector('.container2').innerHTML = `
+        <h4 class='subtitle'>Your Destinations</h4>
+        `
+        let direction = document.createElement('div')
+        direction.innerHTML = `
+        <button class='btn waves-effect waves-light plotcoursebtn'>Plot Course</button>
+        <button class='btn waves-effect waves-light repickbtn'>New Location</button>
+        <button class='btn waves-effect waves-light moreactivitybtn'>Add Activity</button>
+        <button class='btn waves-effect waves-light pickupbtn'>Pick Up</button>
+        <div class='container3'></div>
+        `
+        direction.className = 'options'
+        document.querySelector('.container2').appendChild(direction)
+        destinationsInfo.forEach(destination => {
+            let destinationelem = document.createElement('div')
+            destinationelem.innerHTML = `
+            <h4 class='businesses'>${destination.name}</h4>
+            <h5 class='businesses'>${destination.address}</h5>
+            `
+            document.querySelector('.container2').appendChild(destinationelem)
+    })
+}
+
+// display yelp search for next activity when previous activity location is click
 const nextactivity = () => {
     if (i !== activities.length) {
         document.querySelector('.container2').innerHTML = `
@@ -155,24 +202,7 @@ const nextactivity = () => {
     } 
     // display all destinations when location for all activites been selected
     else if (i === activities.length) {
-        document.querySelector('.container2').innerHTML = `
-        <h4 class='subtitle'>Your Destinations</h4>
-        `
-        destinationsInfo.forEach(destination => {
-            let destinationelem = document.createElement('div')
-            destinationelem.innerHTML = `
-            <h4 class='businesses'>${destination.name}</h4>
-            <h5 class='businesses'>${destination.address}</h5>
-            `
-            document.querySelector('.container2').appendChild(destinationelem)
-        })
-        let direction = document.createElement('div')
-        direction.innerHTML = `
-        <button class='btn waves-effect waves-light plotcoursebtn'>Plot Course</button>
-        `
-        // <button class='btn waves-effect waves-light savebtn'>Save</button>
-        direction.className = 'directionOrsave'
-        document.querySelector('.container2').appendChild(direction)
+        dispdestination()
     }
 }
 
@@ -196,18 +226,20 @@ const direction = () => {
 }
 
 document.addEventListener('click', e => {
-    if (e.target.className === 'col s12 m4 dispbusiness' && destinationsInfo.indexOf(e.target.address) === -1) {
-        destinationsInfo.push({ 'name': e.target.name, 'address': e.target.address })
+    if (e.target.className === 'dispbusiness') {
+        console.log(e.target.value)
+        destinationsInfo.push({ 'name': e.target.name, 'address': e.target.value })
         i++
         setTimeout(nextactivity, 500)
-    } else if (e.target.className === 'btn waves-effect waves-light plotcoursebtn') {
+    } else if (e.target.classList.contains('plotcoursebtn')) {
+        console.log(destinationsInfo)
         destinationsInfo.forEach(destination => {
-            waypoints.push(`${destination.address[0]} ${destination.address[1]}`)
+            waypoints.push(`${destination.address}`)
         })
         direction()
-    } else if (e.target.className === 'btn waves-effect waves-light location') {
-        e.preventDefault()
-    } else if (e.target.className === 'btn waves-effect waves-light rmvactivities' || e.target.className === 'material-icons') {
+    // } else if (e.target.className === 'btn waves-effect waves-light location') {
+    //     e.preventDefault()
+    } else if (e.target.classList.contains('rmvactivities') || e.target.className === 'material-icons remove') {
         e.preventDefault()
         document.querySelector('.plannedactivities').innerHTML = ''
         let j = activities.indexOf(e.target.value)
@@ -215,9 +247,37 @@ document.addEventListener('click', e => {
             activities.splice(j,1)
         }
         activitybtns()
-    } else if (e.target.className === 'btn waves-effect waves-light isOptimize') {
+    } else if (e.target.classList.contains('isOptimize')) {
         e.preventDefault()
         isOptimize = !isOptimize
         direction()
+    } else if (e.target.classList.contains('repickbtn')) {
+        destinationsInfo.splice(0, destinationsInfo.length)
+        i = 0
+        nextactivity()
+    } else if (e.target.classList.contains('moreactivitybtn')) {
+        document.querySelector('.container3').innerHTML= `
+        <label for="newactivity">Activity</label>
+        <input type="text" class="newactivity" id="newactivity"><!-- 
+        --><button class="btn waves-effect waves-light addmorebtn" type="submit" id="addmore"><i class="material-icons add">add</i></button>
+        `
+    }else if (e.target.classList.contains('addmorebtn') || e.target.className === 'material-icons add') {
+        e.preventDefault()
+        activities.push(document.querySelector('.newactivity').value)
+        nextactivity()
+    } else if (e.target.classList.contains('pickupbtn')) {
+        document.querySelector('.container3').innerHTML = `
+        <label for="name">Name</label>
+        <input type="text" class="name" id="name">
+        <label for="address0">Address</label>
+        <input type="text" class="address0" id="address0"> 
+        <label for="address1">City State Zipcode</label>
+        <input type="text" class="address1" id="address1"> 
+        <button class="btn waves-effect waves-light addpickup" type="submit" id="addpickup"><i class="material-icons">add</i></button>
+        `
+    } else if (e.target.classList.contains('addpickup')) {
+        destinationsInfo.unshift({ 'name': document.querySelector('.name').value, 'address': [`${document.querySelector('.address0').value}`, `${document.querySelector('.address1').value}`]})
+        console.log(destinationsInfo)
+        dispdestination()
     }
 })
