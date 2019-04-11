@@ -9,27 +9,33 @@ let activities = [],
     isOptimize = false,
     API_KEY = 'AxkwSE1_LXTlHlyz7rrKPjqs30_wHghk4L4k5-1w-QALR2_QM7kwVpdbNWmhnt8eFWmN-xFaIdFlaiNKRlaAGzsDHXqGzmRbt_nGrPwXPBmQYSIfq6LbgqFQpKKfXHYx'
 
-// // FirebaseUI config.
-// var uiConfig = {
-//     signInSuccessUrl: 'planner.html',
-//     signInOptions: [
-//       // Leave the lines as is for the providers you want to offer your users.
-//       firebase.auth.GoogleAuthProvider.PROVIDER_ID
-//     ],
-//     // tosUrl and privacyPolicyUrl accept either url string or a callback
-//     // function.
-//     // Terms of service url/callback.
-//     tosUrl: 'https://www.google.com/',
-//     // Privacy policy url/callback.
-//     privacyPolicyUrl: function() {
-//       window.location.assign('https://www.google.com/');
-//     }
-//   };
+const config = {
+    apiKey: "AIzaSyCbPutO4jNX4dyzzK9WJ-w2h06hYSMf-kg",
+    authDomain: "day-out-7bc8d.firebaseapp.com",
+    databaseURL: "https://day-out-7bc8d.firebaseio.com",
+    projectId: "day-out-7bc8d",
+    storageBucket: "day-out-7bc8d.appspot.com",
+    messagingSenderId: "855448935871"
+  }
+firebase.initializeApp(config)
 
-//   // Initialize the FirebaseUI Widget using Firebase.
-//   var ui = new firebaseui.auth.AuthUI(firebase.auth());
-//   // The start method will wait until the DOM is loaded.
-//   ui.start('#login', uiConfig);
+let db = firebase.firestore(), 
+    collections,
+    userid
+
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        userid = user.uid
+        collections = db.collection(`${userid}`)
+    } else {
+        window.location.href = "https://day-out-7bc8d.firebaseapp.com"
+    }
+})
+
+document.querySelector('#signout').addEventListener('click', e => {
+    firebase.auth().signOut()
+    window.location.reload()
+})
 
 //geolocation
 const getLocation = () => {
@@ -106,10 +112,10 @@ const yelp = e => {
         .then(data => {
             data.businesses.forEach(business => {
                 let dispbusiness = document.createElement('div')
-                dispbusiness.className = 'col s12 m4'
+                dispbusiness.className = 'col s12 m4 dispbusinessdiv'
                 dispbusiness.innerHTML = `
             <h4>${business.name}</h4>
-            <button class="dispbusiness" name="${business.name}" value="${business.location.display_address}"><i class="material-icons">add</i></button>
+            <button class="dispbusiness" name="${business.name}" value="${business.location.display_address}" data-img="${business.image_url}"> + </button>
             <img src='${business.image_url}' class='businessimg'>
             <h5>Rating: ${business.rating} Price: ${business.price}</h5>
             <h5 class='businessaddress'>${business.location.display_address}</h5>
@@ -136,11 +142,11 @@ const activitybtns = () => {
 // add activity on click
 document.querySelector('#add').addEventListener('click', e => {
     e.preventDefault()
-    if (document.querySelector('.newlocation').value) {
+    if (document.querySelector('.activityinput').value) {
         document.querySelector('.plannedactivities').innerHTML = ''
-        activities.push(document.querySelector('.newlocation').value)
+        activities.push(document.querySelector('.activityinput').value)
         isActivity = true
-        document.querySelector('.newlocation').value = ''
+        document.querySelector('.activityinput').value = ''
         activitybtns()
     }
 })
@@ -149,7 +155,7 @@ document.querySelector('#add').addEventListener('click', e => {
 document.querySelector('.submit').addEventListener('click', e => {
     e.preventDefault()
     document.querySelector('.noactivity').innerHTML = ''
-    if (isActivity === true) {
+    if (isActivity === true && document.querySelector('#dayname').value !==-1 && document.querySelector('#yourlocation').value !==-1 && document.querySelector('#area').value !==-1) {
         dayname = document.querySelector('#dayname').value,
         yourlocation = document.querySelector('#yourlocation').value,
         area = document.querySelector('#area').value
@@ -225,10 +231,15 @@ const direction = () => {
 
 document.addEventListener('click', e => {
     if (e.target.className === 'dispbusiness') {
-        destinationsInfo.push({ 'name': e.target.name, 'address': e.target.value })
+        destinationsInfo.push({ 'name': e.target.name, 'address': e.target.value, 'imgUrl':e.target.dataset.img })
         i++
         setTimeout(nextactivity, 500)
     } else if (e.target.classList.contains('plotcoursebtn')) {
+        id = collections.doc().id
+        collections.doc(id).set({
+            Dayname: dayname,
+            destinations: destinationsInfo
+        })
         destinationsInfo.forEach(destination => {
             waypoints.push(`${destination.address}`)
         })
@@ -262,15 +273,18 @@ document.addEventListener('click', e => {
     } else if (e.target.classList.contains('pickupbtn')) {
         document.querySelector('.container3').innerHTML = `
         <label for="name">Name</label>
-        <input type="text" class="name" id="name">
+        <input type="text" class="name pickupinput" id="name">
         <label for="address0">Address</label>
-        <input type="text" class="address0" id="address0"> 
+        <input type="text" class="address0 pickupinput" id="address0"> 
         <label for="address1">City State Zipcode</label>
-        <input type="text" class="address1" id="address1"> 
+        <input type="text" class="address1 pickupinput" id="address1"> 
         <button class="btn waves-effect waves-light addpickup" type="submit" id="addpickup"><i class="material-icons">add</i></button>
         `
     } else if (e.target.classList.contains('addpickup')) {
-        destinationsInfo.unshift({ 'name': document.querySelector('.name').value, 'address': [`${document.querySelector('.address0').value}`, `${document.querySelector('.address1').value}`]})
+        destinationsInfo.unshift({ 
+            'name': document.querySelector('.name').value, 
+            'address': [`${document.querySelector('.address0').value}`, `${document.querySelector('.address1').value}`]
+        })
         dispdestination()
     }
 })
