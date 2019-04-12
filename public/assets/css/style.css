@@ -6,15 +6,17 @@ body {
 .container {
     position: relative;
 }
-.title {
-    font-size: 90px;
+.appname {
+    font-size: 60px;
     text-align: center;
+    color: white;
+    background-color: #26a699;
+    height: 170px;
+    width: 170px;
     margin: auto;
-    margin-top: 15%;
-    padding-top: 14%;
-    width: 650px;
-    height: 75px;
-    background-color: rgba(158, 158, 158, 0.548);
+    line-height: 1;
+    padding-top: 6%;
+    margin-top: 35%;
 }
 .start {
     display: block;
@@ -23,24 +25,30 @@ body {
     text-align: center;
     margin-top: 3%;
 }
+label {
+    font-size: 20px;
+}
 /* Planner Page */
 .title2 {
-    font-size: 50px;
+    font-size: 70px;
     text-align: center;
     color: white;
-    background-color: #26a69986;
-    height: 300px;
-    width: 250px;
+    background-color: #26a699;
+    height: 184px;
+    width: 184px;
     margin: auto;
-    margin-top: 1%;
-    margin-bottom: 3%;
-    padding: 1.5% 0;
-    font-size: 110px;
+    padding-top: 6%;
+    line-height: 1
 }
-label {
+button, .dispbusiness {
+    background-color: transparent;
+    box-shadow: none;
+    color: #26a699;
+}
+/* label {
     color: rgb(88, 88, 88);
     font-size: 40px;
-}
+} */
 button:hover {
     cursor: pointer;
 }
@@ -62,10 +70,10 @@ button:hover {
     margin-top: 3%;
     color: #26a69a;
 }
-#yourlocation, #startlocation, #dayname, #area {
+#yourlocation, #activityinput, #dayname, #area {
     width: 93%;
     margin-top: 2.5%;
-    font-size: 20px;
+    font-size: 30px;
 }
 #location, .addbtn {
     background-color: transparent;
@@ -83,6 +91,7 @@ button:hover {
     background-color: transparent;
     color: #26a69a;
     box-shadow: none;
+    margin-top: -9%;
 }
 input[type=text] {
     margin-top: 3%;
@@ -93,11 +102,29 @@ input[type=text] {
 }
 /* yelp search */
 .dispbusiness {
-    text-align: center;
-    margin: auto;
-    height: 390px;
+    font-size: 30px;
+    float: right;
+    border: none;
 }
-.businessimg {
+.profileimg {
+    margin-top: 2%;
+    text-align: center;
+}
+.profilename {
+    text-align: center;
+    font-size: 40px;
+}
+.picture {
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+}
+.businessimg, .picture {
     width: 160px;
     height: 160px;
 }
@@ -109,12 +136,15 @@ input[type=text] {
     font-size: 11px;
     box-shadow: none;
 }
+.plotcoursebtn, .repickbtn, .moreactivitybtn, .pickupbtn {
+    width: 10em;
+    margin: 4px;
+}
 .subtitle {
     text-align: center;
     color: #26a69a;
-    margin-top: -2%;
     margin-bottom: 2%;
-    font-size: 50px;
+    font-size: 40px;
 }
 .businesses {
     text-align: center;
@@ -146,139 +176,6 @@ input[type=text] {
 .mapquest-logo {
     visibility: hidden;
 }
-@media only screen and (max-width: 1480px) {
-    .title2 {
-        font-size: 70px;
-        padding: 2%;
-        height: 200px;
-        width: 210px;
-    }
-    label {
-        font-size: 32px;
-    }
-    #yourlocation, #startlocation, #dayname, #area {
-        margin-top: .5%;
-        font-size: 18px;
-    }
-    .subtitle {
-        font-size: 40px;
-    }
-    .businessimg {
-        width: 130px;
-        height: 130px;
-    }
-    h4 {
-        font-size: 30px;
-    }
-    h5 {
-        font-size: 20px;
-    }
-    .dispbusiness {
-        height: 365px;
-    }
-}
 html {
     overflow-y: scroll;
-}
-/* media query */
-@media only screen and (max-width: 1024px) {
-    .title2 {
-        width: 200px;
-        padding: 4%;
-        float: left;
-        margin-top: 0;
-        height: 250px;
-        font-size: 85px;
-    }
-    label {
-        font-size: 29px;
-    }
-    .subtitle {
-        margin-top: 0;
-    }
-    form {
-        padding-top: 6%;
-    }
-    .container2 {
-        padding-top: 40%; 
-    }
-    #yourlocation, #startlocation, #dayname, #area {
-        margin-top: 0;
-        font-size: 17px;
-    }
-    .dispbusiness {
-        height: 360px;
-    }
-}
-@media only screen and (max-width: 991px) {
-    .title2 {
-        font-size: 80px;
-        height: 225px;
-        width: 190px;
-    }
-    .container2 {
-        padding-top: 34%;
-    }
-}
-@media only screen and (max-width: 768px) {
-    .title2 {
-        font-size: 75px;
-        height: 215px;
-        width: 185px;
-    }
-    .container2 {
-        padding-top: 39%;
-    }
-}
-@media only screen and (max-width: 640px) {
-    .title2 {
-        font-size: 68px;
-        height: 190px;
-        width: 160px;
-    }
-}
-@media only screen and (max-width: 600px) {
-    .title2 {
-        float: none;
-        height: 90px;
-        width: 250px;
-        margin-top: 1%;
-        padding: 3.5%;
-        font-size: 55px;
-    }
-    .container2 {
-        padding-top: 2%;
-    }
-    .dispbusiness {
-        height: 290px;
-        text-align: left;
-    }
-}
-@media only screen and (max-width: 550px) {
-    label {
-        font-size: 20px;
-    }
-    .rmvactivities {
-        font-size: 13px;
-    }
-    .subtitle {
-        font-size: 37px;
-        margin-bottom: 0;
-    }
-    .businessimg {
-        width: 120px;
-        height: 120px;
-    }
-    h4 {
-        font-size: 23px;
-    }
-    h5 {
-        font-size: 16px;
-    }
-    .dispbusiness {
-        height: 253px;
-    }
-    #yourlocation, #startlocation, #dayname, #area {
-        font-size: 15px;
-    }
 }
