@@ -33,7 +33,7 @@ body {
     font-size: 50px;
     text-align: center;
     color: white;
-    background-color: #26a69986;
+    background-color: #26a699;
     height: 300px;
     width: 250px;
     margin: auto;
@@ -148,6 +148,7 @@ input[type=text] {
 
 .dispbusiness {
     float: right;
+    font-size: 30px;
 }
 
 .dispbusiness:hover, .rmvactivities:hover {

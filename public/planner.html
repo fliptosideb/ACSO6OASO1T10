@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,28 +9,47 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
-    <!-- <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" /> -->
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Planner</title>
 </head>
-
 <body>
-    <header class="title2">Day Out</header>
+    <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right">
+                <li>
+                    <a href="./profile.html">
+                        <button class="btn waves-effect waves-light right profilebtn" id="profilebtn" name="action">
+                            <i class="material-icons">face</i>
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <button class="btn waves-effect waves-light right signout" type="submit" id="signout" name="action">
+                        <i class="material-icons">exit_to_app</i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <header class="title2">DAY OUT</header>
+    </nav>
     <div class="container">
         <div class="row container2">
             <div class="col s12">
                 <form>
                     <div class="row">
                         <div class="col s12">
-                            <label for="date">Name of Day</label>
+                            <label for="dayname">Name of Day</label>
                             <input type="text" id="dayname">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12">
                             <label for="yourlocation">Your Location</label>
-                            <input type="text" id="yourlocation"><!-- 
-                            --><button class="btn waves-effect waves-light location" type="submit" id="location" name="action"><i class="material-icons">location_on</i></button>
+                            <input type="text" id="yourlocation">
+                            <!-- 
+                            --><button class="btn waves-effect waves-light location" type="submit" id="location"
+                                name="action"><i class="material-icons">location_on</i></button>
                         </div>
                     </div>
                     <div class="row">
@@ -42,9 +60,11 @@
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <label for="startlocation" class="activityinput">Activity</label>
-                            <input type="text" class="newlocation" id="startlocation"><!-- 
-                            --><button class="btn waves-effect waves-light addbtn" type="submit" id="add"><i class="material-icons">add</i></button>
+                            <label for="activityinput">Activity</label>
+                            <input type="text" class="activityinput" id="activityinput">
+                            <!-- 
+                            --><button class="btn waves-effect waves-light addbtn" type="submit" id="add"><i
+                                    class="material-icons">add</i></button>
                         </div>
                     </div>
                     <div class="row">
@@ -61,10 +81,9 @@
         </div>
     </div>
 
-    <!-- <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
     <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
     <script src="./assets/javascript/app.js"></script>
 </body>
-
 </html>
