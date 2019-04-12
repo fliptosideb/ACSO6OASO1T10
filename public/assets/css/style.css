@@ -3,11 +3,9 @@ body {
     font-family: 'Abel', sans-serif;
     color: rgb(88, 88, 88);
 }
-
 .container {
     position: relative;
 }
-
 .title {
     font-size: 90px;
     text-align: center;
@@ -18,22 +16,19 @@ body {
     height: 75px;
     background-color: rgba(158, 158, 158, 0.548);
 }
-
 .start {
     display: block;
-    color: #26a69a;
+    color: #26a69a; 
     font-size: 25px;
     text-align: center;
     margin-top: 3%;
 }
-
 /* Planner Page */
-
 .title2 {
     font-size: 50px;
     text-align: center;
     color: white;
-    background-color: #26a699;
+    background-color: #26a69986;
     height: 300px;
     width: 250px;
     margin: auto;
@@ -42,46 +37,37 @@ body {
     padding: 1.5% 0;
     font-size: 110px;
 }
-
 label {
     color: rgb(88, 88, 88);
     font-size: 40px;
 }
-
 button:hover {
     cursor: pointer;
 }
-
-.addbtn:focus {
+.addbtn:focus{
     background-color: transparent;
     box-shadow: none;
 }
-
 .nextlocation {
     margin-top: 6%;
 }
-
 .locations {
     margin-top: -7%;
 }
-
 .plannedactivities {
     color: #26a69a;
     margin-bottom: 1%;
 }
-
 .noactivity {
     margin-top: 3%;
     color: #26a69a;
 }
-
 #yourlocation, #startlocation, #dayname, #area {
     width: 93%;
     margin-top: 2.5%;
     font-size: 20px;
 }
-
-#location, .addbtn, .dispbusiness {
+#location, .addbtn {
     background-color: transparent;
     color: #26a69a;
     box-shadow: none;
@@ -89,45 +75,40 @@ button:hover {
     padding: 0;
     margin-top: .5%;
     margin-bottom: 3%;
-    border: none;
 }
-
 .activityinput {
     display: block;
 }
-
 .rmvactivities {
     background-color: transparent;
     color: #26a69a;
     box-shadow: none;
 }
-
 input[type=text] {
     margin-top: 3%;
 }
-
 .addbtn:hover {
     background-color: transparent;
     box-shadow: none;
 }
-
 /* yelp search */
-
+.dispbusiness {
+    text-align: center;
+    margin: auto;
+    height: 390px;
+}
 .businessimg {
     width: 160px;
     height: 160px;
 }
-
 .businessaddress {
     margin-bottom: 2%;
 }
-
 .activitybtn {
     margin: 1%;
     font-size: 11px;
     box-shadow: none;
 }
-
 .subtitle {
     text-align: center;
     color: #26a69a;
@@ -135,51 +116,36 @@ input[type=text] {
     margin-bottom: 2%;
     font-size: 50px;
 }
-
 .businesses {
     text-align: center;
     margin-top: 4%;
 }
-
 .options {
     text-align: center;
     margin-top: 4%;
 }
-
-.dispbusiness {
-    float: right;
-    font-size: 30px;
-}
-
 .dispbusiness:hover, .rmvactivities:hover {
     background-color: #26a69952;
 }
-
 /* map */
-
 #map {
     border: 2px solid #26a69a;
 }
-
 .leaflet-control {
     width: 290px;
     height: 150px;
     margin-bottom: none;
 }
-
 .leaflet-bar {
     box-shadow: none;
 }
-
 .directionbtn {
     left: 8em;
     top: -2em;
 }
-
 .mapquest-logo {
     visibility: hidden;
 }
-
 @media only screen and (max-width: 1480px) {
     .title2 {
         font-size: 70px;
@@ -207,14 +173,14 @@ input[type=text] {
     h5 {
         font-size: 20px;
     }
+    .dispbusiness {
+        height: 365px;
+    }
 }
-
 html {
     overflow-y: scroll;
 }
-
 /* media query */
-
 @media only screen and (max-width: 1024px) {
     .title2 {
         width: 200px;
@@ -234,14 +200,16 @@ html {
         padding-top: 6%;
     }
     .container2 {
-        padding-top: 40%;
+        padding-top: 40%; 
     }
     #yourlocation, #startlocation, #dayname, #area {
         margin-top: 0;
         font-size: 17px;
     }
+    .dispbusiness {
+        height: 360px;
+    }
 }
-
 @media only screen and (max-width: 991px) {
     .title2 {
         font-size: 80px;
@@ -252,7 +220,6 @@ html {
         padding-top: 34%;
     }
 }
-
 @media only screen and (max-width: 768px) {
     .title2 {
         font-size: 75px;
@@ -263,7 +230,6 @@ html {
         padding-top: 39%;
     }
 }
-
 @media only screen and (max-width: 640px) {
     .title2 {
         font-size: 68px;
@@ -271,7 +237,6 @@ html {
         width: 160px;
     }
 }
-
 @media only screen and (max-width: 600px) {
     .title2 {
         float: none;
@@ -284,8 +249,11 @@ html {
     .container2 {
         padding-top: 2%;
     }
+    .dispbusiness {
+        height: 290px;
+        text-align: left;
+    }
 }
-
 @media only screen and (max-width: 550px) {
     label {
         font-size: 20px;
@@ -307,12 +275,10 @@ html {
     h5 {
         font-size: 16px;
     }
+    .dispbusiness {
+        height: 253px;
+    }
     #yourlocation, #startlocation, #dayname, #area {
         font-size: 15px;
     }
-}
-
-.plotcoursebtn, .repickbtn, .moreactivitybtn, .pickupbtn {
-    width: 10em;
-    margin: 4px;
 }
