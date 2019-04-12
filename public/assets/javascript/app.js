@@ -155,7 +155,7 @@ document.querySelector('#add').addEventListener('click', e => {
 document.querySelector('.submit').addEventListener('click', e => {
     e.preventDefault()
     document.querySelector('.noactivity').innerHTML = ''
-    if (isActivity === true && document.querySelector('#dayname').value !==-1 && document.querySelector('#yourlocation').value !==-1 && document.querySelector('#area').value !==-1) {
+    if (isActivity === true) {
         dayname = document.querySelector('#dayname').value,
         yourlocation = document.querySelector('#yourlocation').value,
         area = document.querySelector('#area').value
