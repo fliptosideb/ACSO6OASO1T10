@@ -1,5 +1,7 @@
 # Day Out App
 
+https://day-out-7bc8d.firebaseapp.com/
+
 Project #1 at UCI's Coding Boot Camp.
 
 The day out applications is an all-in-one place to search and plan out your day whether you are going on a date or like to be organized.
