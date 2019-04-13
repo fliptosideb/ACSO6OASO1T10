@@ -67,15 +67,12 @@ button:hover {
     margin-top: 3%;
     color: #26a69a;
 }
-#activityinput{
-
-}
 #yourlocation, #activityinput, #dayname, #area {
     width: 93%;
     margin-top: .5%;
     font-size: 18px;
 }
-#location, .addbtn, .dispbusiness {
+#location, .addbtn, .dispbusiness, .backtoprofile {
     background-color: transparent;
     color: #26a69a;
     box-shadow: none;
@@ -102,12 +99,12 @@ nav {
     height: 100%;
 }
 nav i.material-icons {
-    font-size: 30px;
+    font-size: 27px;
     height: 49px;
     width: 49px;
     line-height: 47px;
 }
-.signout, .plannerbtn, .profilebtn {
+.signout, .plannerbtn, .profilebtn, .searchbtn {
     background-color: transparent;
     color: #26a69a;
     box-shadow: none;
@@ -119,11 +116,11 @@ nav i.material-icons {
 .plannerbtn, .profilebtn {
     padding: 0;
 }
-.signout:hover, .plannerbtn:hover, .profilebtn:hover, .dispbusiness:hover{
+.signout:hover, .plannerbtn:hover, .profilebtn:hover, .dispbusiness:hover, .backtoprofile:hover{
     background-color: transparent;
     box-shadow: none;
 }
-nav i.material-icons:hover, .dispbusiness:hover {
+nav i.material-icons:hover, .dispbusiness:hover, .backtoprofile:hover {
     border: 1px solid #26a69a;
     border-radius: 100%;
     -webkit-border-radius: 100%;
@@ -162,7 +159,7 @@ nav i.material-icons:hover, .dispbusiness:hover {
     text-align: center;
     margin-top: 4%;
 }
-.dispbusiness {
+.dispbusiness, .backtoprofile {
     float: right;
     font-size: 35px;
     height: 50px;
@@ -233,20 +230,36 @@ h5 {
     height: 225px;
     line-height: 5;
 }
-.border {
-    width: 1020px;
-    border-bottom: 1.5px solid #26a69a;
-    margin-top: -2%;
-}
 .nameofday {
     text-align: center;
-    font-size: 60px;
+    font-size: 36px;
 }
 .dispsaved {
     text-align: center
 }
 .savedday {
     border-bottom: 1.5px solid #26a69a;
+}
+.searchinput {
+    width: 94%;
+}
+.searchbtn2 {
+    padding: 0;
+    width: 6%;
+    background-color: transparent;
+    color: #26a69a;
+    box-shadow: none;
+}
+.searchrow {
+    margin-left: 18%;
+    margin-right: 18%;
+}
+.backbtn {
+    margin-left: 41.5%;
+    margin-right: 41.5%;
+    margin-bottom: 0;
+    width: 64px;
+    margin: auto;
 }
 
 /* media query */
@@ -289,9 +302,6 @@ h5 {
         text-align: center;
         margin-top: -15%;
     }
-    .border {
-        visibility: hidden;
-    }
     label{
         font-size: 24px
     }
@@ -310,7 +320,7 @@ h5 {
     h5 {
         font-size: 18px;
     }
-    .dispbusiness {
+    .dispbusiness, .backtoprofile {
         font-size: 30px;
     }
 }

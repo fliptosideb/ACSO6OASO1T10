@@ -235,13 +235,19 @@ document.addEventListener('click', e => {
         i++
         setTimeout(nextactivity, 500)
     } else if (e.target.classList.contains('plotcoursebtn')) {
-        id = collections.doc().id
-        collections.doc(id).set({
-            Dayname: dayname,
-            destinations: destinationsInfo
-        })
+        let daynamearr = dayname.split(' ')
+        for(let i = 0 ; i < daynamearr.length ; i++){
+            daynamearr[i] = daynamearr[i].toUpperCase()
+        }
         destinationsInfo.forEach(destination => {
             waypoints.push(`${destination.address}`)
+        })
+        console.log(waypoints)
+        id = collections.doc().id
+        collections.doc(id).set({
+            Dayname: daynamearr,
+            destinations: destinationsInfo,
+            waypoints: waypoints
         })
         direction()
     } else if (e.target.classList.contains('rmvactivities') || e.target.className === 'material-icons remove') {
