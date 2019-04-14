@@ -98,7 +98,7 @@ const dispdocs = (e) => {
     saveddayelem.innerHTML = `
     <h4 class='row nameofday'>${Daynamestr}</h4>
     <div class='row backbtn'>
-    <button class="btn waves-effect waves-light right mapit${savedday}" id="mapit" name="action" value="${e.id}">map</button>
+    <button class="btn waves-effect waves-light right mapit mapit${savedday}" id="mapit" name="action" value="${e.id}">map</button>
     </div>
     <div class='row a${savedday}'></div>
     `
@@ -118,16 +118,15 @@ const dispdocs = (e) => {
     })
     document.addEventListener('click', e => {
         if (e.target.classList.contains(`mapit${savedday}`)){
++
             db.collection(`${userid}`).where(firebase.firestore.FieldPath.documentId(), '==', `${e.target.value}`)
             .get()
             .then(docs => {
                 docs.forEach(doc => {
                     newwaypoints = waypoints
-                    getLocation()
                     direction()
                 })
             })
-            console.log(curLocation)
         }
     })
     i++
@@ -147,26 +146,32 @@ firebase.auth().onAuthStateChanged(user => {
                 dispdocs(doc) 
             })
         })
+        getLocation()
+        console.log(curLocation)
         document.querySelector('.searchbtn2').addEventListener('click', e => {
             e.preventDefault()
-            let search = document.querySelector('.searchinput').value
-            let searcharr = search.split(' ')
-            searcharr.forEach(firstword => {
-                firstword = firstword.charAt(0).toUpperCase() + firstword.substr(1);
-            })
-            for(let i = 0 ; i < searcharr.length ; i++){
-                searcharr[i] = searcharr[i].toUpperCase()
-            }  
-            dbsearchresult.splice(0,dbsearchresult.length)
-            document.querySelector('.searchinput').value = ''
-            document.querySelector('.container5').innerHTML = ''
-            db.collection(`${userid}`).where('Dayname', 'array-contains', `${searcharr[0]}`)
-            .get()
-            .then(docs => {
-                docs.forEach(doc => {
-                   dispdocs(doc)
+            // getLocation()
+            // console.log(curLocation)
+            // if (document.querySelector('.searchinput').value > 0) {
+                let search = document.querySelector('.searchinput').value
+                let searcharr = search.split(' ')
+                searcharr.forEach(firstword => {
+                    firstword = firstword.charAt(0).toUpperCase() + firstword.substr(1);
                 })
-            })
+                for(let i = 0 ; i < searcharr.length ; i++){
+                    searcharr[i] = searcharr[i].toUpperCase()
+                }  
+                dbsearchresult.splice(0,dbsearchresult.length)
+                document.querySelector('.searchinput').value = ''
+                document.querySelector('.container5').innerHTML = ''
+                db.collection(`${userid}`).where('Dayname', 'array-contains', `${searcharr[0]}`)
+                .get()
+                .then(docs => {
+                    docs.forEach(doc => {
+                        dispdocs(doc)
+                    })
+                })
+            // }
         })
     } else {
         window.location.href = "https://day-out-7bc8d.firebaseapp.com"
