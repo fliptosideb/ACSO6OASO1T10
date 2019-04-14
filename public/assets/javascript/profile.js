@@ -16,29 +16,34 @@ let db = firebase.firestore(),
     userid,
     userpic,
     username,
-    curLocation,
+    yourlocation,
     isOptimize = false,
     i = 0
 
+//geolocation
 const getLocation = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-        document.querySelector('.container4').innerHTML = "Geolocation is not supported by this browser."
+        yourLocation.value = "Geolocation is not supported by this browser.";
     }
 }
 
 const showPosition = (position) => {
+    yourLocation = document.querySelector('#yourlocation')
+
     //reverse geocode
     fetch(`https://www.mapquestapi.com/geocoding/v1/reverse?key=zlMKNlqjyFv79AvMHSCLunzQE5O7u7Ak&location=${position.coords.latitude},${position.coords.longitude}`)
         .then(r => r.json())
         .then(({ results }) => {
             let locations = results[0].locations[0]
-            curLocation = locations.street +' '+ locations.adminArea5 +' '+ locations.adminArea3 +' '+ locations.postalCode
+            let curLocation = locations.street +' '+ locations.adminArea5 +' '+ locations.adminArea3 +' '+ locations.postalCode
+            yourLocation.value = curLocation
         })
         .catch(e => console.error(e))
 }
 
+// mapquest api call
 const map = t => {
     L.mapquest.key = 'unhtsta6Q2zNmOUxHGw2VK1eiDTwNWvY';
     const render = (err, response) => {
@@ -59,8 +64,8 @@ const map = t => {
         narrativeControl.addTo(map)
     }
     L.mapquest.directions().route({
-        start: '6440 Adobe Circle Road, Irvine, CA',
-        end: '6440 Adobe Circle Road, Irvine, CA',
+        start: yourlocation,
+        end: yourlocation,
         waypoints: newwaypoints,
         optimizeWaypoints: t,
         options: {
@@ -82,7 +87,7 @@ const direction = () => {
         document.querySelector('.container4').innerHTML = ''
         document.querySelector('.container4').innerHTML = `
         <button class="btn waves-effect waves-light isOptimize" type="submit">Exact Stop</button>
-        <button class="btn waves-effect waves-light right backtoprofile" id="backtoprofile" name="action">X</button>
+        <button class="btn waves-effect waves-light right backtoprofile" id="backtoprofile" name="action">x</button>
         <div id="map" style="width: 100%; height: 530px;"></div>
         `
         map(true)
@@ -118,13 +123,23 @@ const dispdocs = (e) => {
     })
     document.addEventListener('click', e => {
         if (e.target.classList.contains(`mapit${savedday}`)){
-+
+            document.querySelector('.container4').innerHTML = ''
+            let addressinput = document.createElement('div')
+            addressinput.className = 'row'
+            addressinput.innerHTML = `
+            <div class="col s12 locationform">
+                <label for="yourlocation">Your Location</label>
+                    <input type="text" id="yourlocation">
+                    <button class="col s6 btn waves-effect waves-light location" type="submit" id="location" name="action">Geolocation</button>
+                    <button class="col s6 btn waves-effect waves-light getdir" type="submit" id="getdir" name="action">Direction</button>
+            </div>
+            `
+            document.querySelector('.container4').appendChild(addressinput)
             db.collection(`${userid}`).where(firebase.firestore.FieldPath.documentId(), '==', `${e.target.value}`)
             .get()
             .then(docs => {
                 docs.forEach(doc => {
                     newwaypoints = waypoints
-                    direction()
                 })
             })
         }
@@ -146,13 +161,10 @@ firebase.auth().onAuthStateChanged(user => {
                 dispdocs(doc) 
             })
         })
-        getLocation()
-        console.log(curLocation)
         document.querySelector('.searchbtn2').addEventListener('click', e => {
             e.preventDefault()
-            // getLocation()
-            // console.log(curLocation)
-            // if (document.querySelector('.searchinput').value > 0) {
+            if (document.querySelector('.searchinput').value) {
+                document.querySelector('.noval').innerHTML = ''
                 let search = document.querySelector('.searchinput').value
                 let searcharr = search.split(' ')
                 searcharr.forEach(firstword => {
@@ -171,7 +183,10 @@ firebase.auth().onAuthStateChanged(user => {
                         dispdocs(doc)
                     })
                 })
-            // }
+            } else {
+                document.querySelector('.noval').innerHTML = ''
+                document.querySelector('.noval').innerHTML = 'Enter day name'
+            }
         })
     } else {
         window.location.href = "https://day-out-7bc8d.firebaseapp.com"
@@ -190,5 +205,19 @@ document.addEventListener('click', e => {
         e.preventDefault()
         isOptimize = !isOptimize
         direction()
+    } else if (e.target.classList.contains('location')) {
+        e.preventDefault()
+        getLocation()
+    }else if (e.target.classList.contains('getdir')) {
+        if (document.querySelector('#yourlocation').value){
+            yourlocation = document.querySelector('#yourlocation').value
+            console.log(yourlocation)
+            direction()
+        } else {
+            let errmessage = document.createElement('div')
+            errmessage.className = 'row'
+            errmessage.innerHTML = 'Please Enter Your Address'
+            document.querySelector('.container4').appendChild(errmessage)
+        }
     }
 })

@@ -155,7 +155,7 @@ document.querySelector('#add').addEventListener('click', e => {
 document.querySelector('.submit').addEventListener('click', e => {
     e.preventDefault()
     document.querySelector('.noactivity').innerHTML = ''
-    if (isActivity === true) {
+    if (isActivity === true && document.querySelector('#dayname').value && document.querySelector('#yourlocation').value && document.querySelector('#area').value) {
         dayname = document.querySelector('#dayname').value,
         yourlocation = document.querySelector('#yourlocation').value,
         area = document.querySelector('#area').value
@@ -166,7 +166,7 @@ document.querySelector('.submit').addEventListener('click', e => {
     } else {
         let noactivity = document.createElement('p')
         noactivity.className = 'noactivity'
-        noactivity.innerHTML = `Please add an activity`
+        noactivity.innerHTML = `Please fill out form`
 
         document.querySelector('.noactivity').append(noactivity)
     }
@@ -274,8 +274,10 @@ document.addEventListener('click', e => {
         `
     }else if (e.target.classList.contains('addmorebtn') || e.target.className === 'material-icons add') {
         e.preventDefault()
-        activities.push(document.querySelector('.newactivity').value)
-        nextactivity()
+        if (document.querySelector('.newactivity').value){
+            activities.push(document.querySelector('.newactivity').value)
+            nextactivity()
+        }
     } else if (e.target.classList.contains('pickupbtn')) {
         document.querySelector('.container3').innerHTML = `
         <label for="name">Name</label>
@@ -287,10 +289,13 @@ document.addEventListener('click', e => {
         <button class="btn waves-effect waves-light addpickup" type="submit" id="addpickup"><i class="material-icons">add</i></button>
         `
     } else if (e.target.classList.contains('addpickup')) {
-        destinationsInfo.unshift({ 
-            'name': document.querySelector('.name').value, 
-            'address': [`${document.querySelector('.address0').value}`, `${document.querySelector('.address1').value}`]
-        })
-        dispdestination()
+        if (document.querySelector('.name').value && document.querySelector('.address0').value && document.querySelector('.address1').value) {
+            destinationsInfo.unshift({ 
+                'name': document.querySelector('.name').value, 
+                'address': [`${document.querySelector('.address0').value}`, `${document.querySelector('.address1').value}`]
+            })
+            console.log(destinationsInfo)
+            dispdestination()
+        }
     }
 })

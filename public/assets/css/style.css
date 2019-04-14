@@ -72,7 +72,7 @@ button:hover {
     margin-top: .5%;
     font-size: 18px;
 }
-#location, .addbtn, .dispbusiness, .backtoprofile {
+#location, .addbtn, .dispbusiness, .backtoprofile, .getdir {
     background-color: transparent;
     color: #26a69a;
     box-shadow: none;
@@ -89,10 +89,6 @@ button:hover {
 input[type=text] {
     margin-top: 3%;
 }
-.addbtn:hover {
-    background-color: transparent;
-    box-shadow: none;
-}
 nav {
     background-color: transparent;
     box-shadow: none;
@@ -100,8 +96,8 @@ nav {
 }
 nav i.material-icons {
     font-size: 27px;
-    height: 49px;
-    width: 49px;
+    height: 45px;
+    width: 45px;
     line-height: 47px;
 }
 .signout, .plannerbtn, .profilebtn, .searchbtn {
@@ -116,7 +112,7 @@ nav i.material-icons {
 .plannerbtn, .profilebtn {
     padding: 0;
 }
-.signout:hover, .plannerbtn:hover, .profilebtn:hover, .dispbusiness:hover, .backtoprofile:hover{
+.signout:hover, .plannerbtn:hover, .profilebtn:hover, .dispbusiness:hover, .backtoprofile:hover, .getdir:hover, .addbtn:hover{
     background-color: transparent;
     box-shadow: none;
 }
@@ -211,6 +207,9 @@ h5 {
 .isOptimize {
     margin-top: 3%;
 }
+.locationform {
+    margin-top: 20%;
+}
 
 /* profile */
 .profileimg {
@@ -226,8 +225,6 @@ h5 {
     opacity: .9;
 }
 .profilename{
-    font-size: 70px;
-    height: 225px;
     line-height: 5;
 }
 .nameofday {
@@ -235,7 +232,7 @@ h5 {
     font-size: 36px;
 }
 .dispsaved {
-    text-align: center
+    text-align: center;
 }
 .savedday {
     border-bottom: 1.5px solid #26a69a;
@@ -260,6 +257,9 @@ h5 {
     margin-bottom: 0;
     width: 64px;
     margin: auto;
+}
+.noval {
+    text-align: center;
 }
 
 /* media query */
