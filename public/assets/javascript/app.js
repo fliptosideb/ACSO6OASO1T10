@@ -6,6 +6,7 @@ let activities = [],
     dayname,
     yourlocation,
     area,
+    isPickup = false,
     isOptimize = false,
     API_KEY = 'AxkwSE1_LXTlHlyz7rrKPjqs30_wHghk4L4k5-1w-QALR2_QM7kwVpdbNWmhnt8eFWmN-xFaIdFlaiNKRlaAGzsDHXqGzmRbt_nGrPwXPBmQYSIfq6LbgqFQpKKfXHYx'
 
@@ -86,7 +87,6 @@ const map = t => {
     }
     L.mapquest.directions().route({
         start: yourlocation,
-        end: yourlocation,
         waypoints: waypoints,
         optimizeWaypoints: t,
         options: {
@@ -263,9 +263,15 @@ document.addEventListener('click', e => {
         isOptimize = !isOptimize
         direction()
     } else if (e.target.classList.contains('repickbtn')) {
-        destinationsInfo.splice(0, destinationsInfo.length)
-        i = 0
-        nextactivity()
+        if (isPickup === true) {
+            destinationsInfo.splice(1, destinationsInfo.length)
+            i = 0
+            nextactivity()
+        } else {
+            destinationsInfo.splice(0, destinationsInfo.length)
+            i = 0
+            nextactivity()
+        }
     } else if (e.target.classList.contains('moreactivitybtn')) {
         document.querySelector('.container3').innerHTML= `
         <label for="newactivity">Activity</label>
@@ -294,7 +300,7 @@ document.addEventListener('click', e => {
                 'name': document.querySelector('.name').value, 
                 'address': [`${document.querySelector('.address0').value}`, `${document.querySelector('.address1').value}`]
             })
-            console.log(destinationsInfo)
+            isPickup = true
             dispdestination()
         }
     }

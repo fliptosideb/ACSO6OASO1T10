@@ -65,7 +65,6 @@ const map = t => {
     }
     L.mapquest.directions().route({
         start: yourlocation,
-        end: yourlocation,
         waypoints: newwaypoints,
         optimizeWaypoints: t,
         options: {
