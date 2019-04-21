@@ -2,13 +2,9 @@
 
 https://day-out-7bc8d.firebaseapp.com/
 
-Project #1 at UCI's Coding Boot Camp.
+Project #1 at UCI's Coding Boot Camp. 
 
 The day out application is an all-in-one place to search and organize your day whether you are going on a date, hanging out with friends, or going to a new area.
-
-## Visuals
-
-Add screenshots
 
 ## Usage
 
@@ -29,6 +25,3 @@ Jonathan Lui    https://github.com/fliptosideb
 Larry To        https://github.com/LTo28
 <br>
 Amine Haddouch  https://github.com/aminehdhd
-
-
-## License
