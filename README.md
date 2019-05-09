@@ -8,6 +8,8 @@ The day out application is an all-in-one place to search and organize your day w
 
 ## Usage
 
+JavaScript
+<br>
 Materialize - UI Design
 <br>
 Yelp API - Search activities, places, and restaurants
